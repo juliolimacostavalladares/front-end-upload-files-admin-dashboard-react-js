@@ -1,8 +1,8 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
-import 'react-circular-progressbar/dist/styles.css'
+import "react-circular-progressbar/dist/styles.css";
 
-export const  GlobalStyle  = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 body {
   font-size: .875rem;
 }

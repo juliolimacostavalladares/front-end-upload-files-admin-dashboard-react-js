@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 
+import SideBar from "../SideBar";
 import Header from "../Header";
 import { DropContainer, UploadMessage } from "./styles";
-
 
 export default class Upload extends Component {
   renderDragMessage = (isDragActive, isDragReject) => {
@@ -23,8 +23,16 @@ export default class Upload extends Component {
     return (
       <>
         <Header />
-        <main role="main" style={{ marginTop: '200px' }} className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-          <Dropzone  accept="audio/*,image/*,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onDropAccepted={onUpload}>
+        <SideBar />
+        <main
+          role="main"
+          style={{ marginTop: "200px" }}
+          className="col-md-9 ml-sm-auto col-lg-10 px-md-4"
+        >
+          <Dropzone
+            accept="audio/*,image/*,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            onDropAccepted={onUpload}
+          >
             {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
               <DropContainer
                 {...getRootProps()}

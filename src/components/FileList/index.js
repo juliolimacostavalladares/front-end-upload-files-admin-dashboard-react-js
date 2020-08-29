@@ -6,39 +6,42 @@ import { Container, FileInfo, Preview } from "./styles";
 
 const FileList = ({ files, onDelete }) => (
   <>
-    <main role="main" style={{ marginTop: '200px' }} className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <main
+      role="main"
+      style={{ marginTop: "200px" }}
+      className="col-md-9 ml-sm-auto col-lg-10 px-md-4"
+    >
       <Container>
-        {files.map(uploadedFile => (
+        {files.map((uploadedFile) => (
           <li key={uploadedFile.id}>
             <FileInfo>
               <Preview src={uploadedFile.preview} />
               <div>
                 <strong>{uploadedFile.name}</strong>
                 <span>
-              {uploadedFile.readableSize}{" "}
-              {!!uploadedFile.url && (
-                <button onClick={() => onDelete(uploadedFile.id)}>
-                  Excluir
-                </button>
-              )}
-            </span>
+                  {uploadedFile.readableSize}{" "}
+                  {!!uploadedFile.url && (
+                    <button onClick={() => onDelete(uploadedFile.id)}>
+                      Excluir
+                    </button>
+                  )}
+                </span>
               </div>
             </FileInfo>
 
             <div>
-              {!uploadedFile.uploaded &&
-                !uploadedFile.error && (
-                  <CircularProgressbar
-                    styles={{
-                      root: { width: 24 },
-                      path: { stroke: "#7159c1" }
-                    }}
-                    strokeWidth={10}
-                    percentage={uploadedFile.progress}
-                  />
-                )}
+              {!uploadedFile.uploaded && !uploadedFile.error && (
+                <CircularProgressbar
+                  styles={{
+                    root: { width: 24 },
+                    path: { stroke: "#7159c1" },
+                  }}
+                  strokeWidth={10}
+                  percentage={uploadedFile.progress}
+                />
+              )}
 
-                {uploadedFile.url && (
+              {uploadedFile.url && (
                 <a
                   href={uploadedFile.url}
                   target="_blank"
@@ -48,14 +51,16 @@ const FileList = ({ files, onDelete }) => (
                 </a>
               )}
 
-              {uploadedFile.uploaded && <MdCheckCircle size={24} color="#78e5d5" />}
+              {uploadedFile.uploaded && (
+                <MdCheckCircle size={24} color="#78e5d5" />
+              )}
               {uploadedFile.error && <MdError size={24} color="#e57878" />}
             </div>
           </li>
         ))}
       </Container>
     </main>
-  </>  
+  </>
 );
 
 export default FileList;

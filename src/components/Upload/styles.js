@@ -9,7 +9,7 @@ const dragReject = css`
 `;
 
 export const DropContainer = styled.div.attrs({
-  className: "dropzone"
+  className: "dropzone",
 })`
   border: 1px dashed #ddd;
   border-radius: 4px;
@@ -17,19 +17,19 @@ export const DropContainer = styled.div.attrs({
 
   transition: height 0.2s ease;
 
-  ${props => props.isDragActive && dragActive};
-  ${props => props.isDragReject && dragReject};
+  ${(props) => props.isDragActive && dragActive};
+  ${(props) => props.isDragReject && dragReject};
 `;
 
 const messageColors = {
   default: "#999",
   error: "#e57878",
-  success: "#78e5d5"
+  success: "#78e5d5",
 };
 
 export const UploadMessage = styled.p`
   display: flex;
-  color: ${props => messageColors[props.type || "default"]};
+  color: ${(props) => messageColors[props.type || "default"]};
   justify-content: center;
   align-items: center;
   padding: 15px 0;

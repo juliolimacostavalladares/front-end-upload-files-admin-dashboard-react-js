@@ -4,41 +4,45 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { MdCheckCircle, MdError, MdLink } from "react-icons/md";
 
 import Header from "../Header";
-
+import SideBar from "../SideBar";
 
 import { Container, FileInfo, Preview } from "./styles";
 
-function FileList({files, onDelete }){
-  console.log(files)
-  return(
+function FileList({ files, onDelete }) {
+  console.log(files);
+  return (
     <>
-    <Header />
-    <main role="main" style={{ marginTop: '200px' }} className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      <Container>
-        {files.map(uploadedFile => (
-          <li key={uploadedFile.id}>
-            <FileInfo>
-              <Preview src={uploadedFile.preview} />
-              <div>
-                <strong>{uploadedFile.name}</strong>
-                <span>
-              {uploadedFile.readableSize}{" "}
-              {!!uploadedFile.url && (
-                <button onClick={() => onDelete(uploadedFile.id)}>
-                  Excluir
-                </button>
-              )}
-            </span>
-              </div>
-            </FileInfo>
+      <Header />
+      <SideBar />
+      <main
+        role="main"
+        style={{ marginTop: "200px" }}
+        className="col-md-9 ml-sm-auto col-lg-10 px-md-4"
+      >
+        <Container>
+          {files.map((uploadedFile) => (
+            <li key={uploadedFile.id}>
+              <FileInfo>
+                <Preview src={uploadedFile.preview} />
+                <div>
+                  <strong>{uploadedFile.name}</strong>
+                  <span>
+                    {uploadedFile.readableSize}{" "}
+                    {!!uploadedFile.url && (
+                      <button onClick={() => onDelete(uploadedFile.id)}>
+                        Excluir
+                      </button>
+                    )}
+                  </span>
+                </div>
+              </FileInfo>
 
-            <div>
-              {!uploadedFile.uploaded &&
-                !uploadedFile.error && (
+              <div>
+                {!uploadedFile.uploaded && !uploadedFile.error && (
                   <CircularProgressbar
                     styles={{
                       root: { width: 24 },
-                      path: { stroke: "#7159c1" }
+                      path: { stroke: "#7159c1" },
                     }}
                     strokeWidth={10}
                     percentage={uploadedFile.progress}
@@ -46,25 +50,26 @@ function FileList({files, onDelete }){
                 )}
 
                 {uploadedFile.url && (
-                <a
-                  href={uploadedFile.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MdLink style={{ marginRight: 8 }} size={24} color="#222" />
-                </a>
-              )}
+                  <a
+                    href={uploadedFile.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MdLink style={{ marginRight: 8 }} size={24} color="#222" />
+                  </a>
+                )}
 
-              {uploadedFile.uploaded && <MdCheckCircle size={24} color="#78e5d5" />}
-              {uploadedFile.error && <MdError size={24} color="#e57878" />}
-            </div>
-          </li>
-        ))}
-      </Container>
-    </main>
-  </>  
-  )
-
+                {uploadedFile.uploaded && (
+                  <MdCheckCircle size={24} color="#78e5d5" />
+                )}
+                {uploadedFile.error && <MdError size={24} color="#e57878" />}
+              </div>
+            </li>
+          ))}
+        </Container>
+      </main>
+    </>
+  );
 }
 
 export default FileList;
